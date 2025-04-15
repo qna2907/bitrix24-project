@@ -1,36 +1,50 @@
-Ngôn ngữ lập trình:
-Backend: Node.js
-Frontend: Vue.js
-Ứng dụng quản lý danh bạ (Contact) tích hợp với OAuth2 Bitrix24. Gồm 2 phần: bitrix-backend: Backend Node.js, xử lý API, OAuth2 và lưu token. bitrix-frontend: Frontend Vue.js, giao diện quản lý contact 
-📁 CẤU TRÚC THƯ MỤC bitrix24-project/
-├── bitrix-backend/ # Backend Node.js
-├── bitrix-frontend/ # Frontend Vue.js
-🛠 CÀI ĐẶT
-1. Clone project
-2. Cài đặt ngrok-v3
-3. Cài đặt backend
-4. Sửa file .env trong bitrix-backend
-  Với thông tin
+# 📇 Bitrix24 Contact Management
+
+Dự án này gồm 2 phần: **Backend (Node.js)** và **Frontend (Vue.js)** để quản lý danh sách contact tích hợp với **Bitrix24 OAuth2**.
+
+## 📦 Tính năng
+
+### ✅ Bài 1 – OAuth Bitrix24 (Backend)
+- Nhận sự kiện **Install App**
+- Lưu `access_token` và `refresh_token` vào file
+- Làm mới token khi hết hạn
+- Gọi API Bitrix24 với token hiện tại
+
+### ✅ Bài 2 – Giao diện quản lý Contact (Frontend)
+- Hiển thị danh sách contact
+- Thêm, sửa, xóa contact
+- Trường thông tin đầy đủ:
+  - Họ tên
+  - Địa chỉ: phường/xã, quận/huyện, tỉnh/thành phố
+  - Số điện thoại
+  - Email
+  - Website
+  - Ngân hàng: tên ngân hàng, số tài khoản
+
+---
+
+## ⚙️ Cài đặt
+
+### 1️⃣ Clone repo
+```bash
+git clone https://github.com/qna2907/bitrix24-project.git
+cd bitrix24-project
+2️⃣ Chạy Backend (Node.js)
+Cài đặt:
+  cd bitrix-backend
+  npm install
+Cấu hình:
+Tạo file .env với thông tin Bitrix24 App:
   CLIENT_ID= YOUR_CLIENT_ID
   CLIENT_SECRET= YOUR_CLIENT_SECRET
   BITRIX_DOMAIN= YOUR_BITRIX_DOMAIN
-5. Chạy Backend:
-  - Di chuyển đến thư mục bitrix-backend: cd bitrix-backend
-  - Chạy file server.js: node server.js Mặc định chạy tại: http://localhost:3000
-6. Cài đặt Frontend
-  - Chạy Frontend:
-  - Di chuyển đến thư mục bitrix-frontend: cd bitrix-frontend
-  - Chạy Frontend: npm run dev
-  - Frontend sẽ chạy tại http://localhost:5173
-🔐 CẤU HÌNH ỨNG DỤNG BITRIX24
-1. Truy cập trang quản lý app: https://yourdomain.bitrix24.vn/devops/edit/application/
-2. Tạo ứng dụng mới, điền thông tin:
-  - Redirect URI: https:///install
-    (ví dụ: https://abcd-1234.ngrok-free.app/install)
-    --> Từ đây sẽ lấy được thông tin YOUR_CLIENT_ID và YOUR_CLIENT_SECRET
-3. Chạy ngrok:
-  - Đăng nhập https://ngrok.com/ để lấy yourauthtoken
-  - Chạy ngrok config add-authtoken yourauthtoken
-  - Chạy ngrok http 3000
-4. Sau khi cài app, trình duyệt sẽ gọi /install?code=...&domain=...
---> server sẽ lưu access_token và refresh_token vào file bitrix_token.json
+Chạy server:
+  node server.js
+Mở ngrok:
+  ngrok http 3000 → Ghi lại URL, ví dụ: https://abcd1234.ngrok.io
+Cập nhật OAuth Callback URL trong Bitrix24 Developer Portal:
+3️⃣ Chạy Frontend (Vue.js)
+  cd ../bitrix-frontend
+  npm install
+  npm run dev
+
