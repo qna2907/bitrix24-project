@@ -1,0 +1,14 @@
+{
+  "name": "bitrix-frontend",
+  "version": "1.0.0",
+  "scripts": {
+    "dev": "vite"
+  },
+  "dependencies": {
+    "@vitejs/plugin-vue": "^5.2.3",
+    "vue": "^3.5.13"
+  },
+  "devDependencies": {
+    "vite": "^6.2.5"
+  }
+}
